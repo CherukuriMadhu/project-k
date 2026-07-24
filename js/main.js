@@ -64,6 +64,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Section 1: Landing ---
+    const typewriterEl = document.querySelector('.typewriter');
+    if (typewriterEl) {
+        const phrases = [
+            "Happy Birthday, Kutty! ❤️",
+            "Happy Birthday, Bangaram! ❤️",
+            "Kutty Bangaram ummma! 😘"
+        ];
+        let phraseIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        let delay = 150;
+
+        function type() {
+            const currentPhrase = phrases[phraseIdx];
+            if (isDeleting) {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx - 1);
+                charIdx--;
+                delay = 50;
+            } else {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx + 1);
+                charIdx++;
+                delay = 120;
+            }
+
+            if (!isDeleting && charIdx === currentPhrase.length) {
+                isDeleting = true;
+                delay = 2000;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                delay = 500;
+            }
+
+            setTimeout(type, delay);
+        }
+        typewriterEl.textContent = "";
+        type();
+    }
+
     document.getElementById('btn-start').addEventListener('click', () => {
         // Start music automatically if user interacts (browsers require interaction)
         if (!isMusicPlaying) {

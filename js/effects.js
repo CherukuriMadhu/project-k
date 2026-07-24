@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext9 = document.getElementById('btn-next-9');
     
     const balloonMessages = [
-        "You deserve the happiest year ever. ❤️",
-        "Never stop smiling.",
+        "You deserve the happiest year ever, my bangaram. ❤️",
+        "Never stop smiling, kutty bangaram ummma! 😘",
         "You look prettier when you smile. 😍",
-        "Sending you endless love! 💌",
+        "Sending you endless love, bangaram! 💌",
         "May all your wishes come true."
     ];
     let poppedCount = 0;
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgDiv.style.marginBottom = '10px';
                     
                     const p = document.createElement('p');
-                    const captions = ["Gorgeous!", "My favourite.", "Wow 😍", "Perfect.", "Kutty ❤️"];
+                    const captions = ["Gorgeous!", "My favourite.", "Wow 😍", "Perfect.", "Kutty ❤️", "Bangaram! ❤️", "Kutty Bangaram ummma! 😘"];
                     p.innerText = captions[Math.floor(Math.random() * captions.length)];
                     
                     polaroid.appendChild(imgDiv);
