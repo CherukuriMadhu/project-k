@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kutty! ❤️</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Background Canvas for Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <!-- Add a placeholder or real audio source later -->
+        <!-- <source src="assets/sounds/bg-music.mp3" type="audio/mpeg"> -->
+    </audio>
+    <button id="music-toggle" class="floating-btn">🎵 Play Music</button>
+
+    <!-- Main Container -->
+    <main id="app">
+        
+        <!-- Section 1: Landing Page -->
+        <section id="s1-landing" class="active">
+            <h1 class="typewriter">Happy Birthday, Kutty! ❤️</h1>
+            <div class="cake-illustration">🎂</div>
+            <button class="primary-btn glow" id="btn-start">Open Your Surprise ✨</button>
+        </section>
+
+        <!-- Section 2: Secret Gift Box -->
+        <section id="s2-gift" class="hidden">
+            <div class="gift-box" id="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-body">🎁</div>
+            </div>
+            <p id="gift-message" class="hidden">Today is all about your smile, Kutty. I made this little world just for you. 🥰</p>
+            <button class="primary-btn hidden" id="btn-next-2">Next 💖</button>
+        </section>
+
+        <!-- Section 3: Catch the Hearts -->
+        <section id="s3-catch" class="hidden">
+            <h2>Catch My Heart 💖</h2>
+            <div class="game-info">Score: <span id="catch-score">0</span> | Time: <span id="catch-time">30</span>s</div>
+            <div id="catch-game-area">
+                <div id="basket">🧺</div>
+            </div>
+            <button class="primary-btn hidden" id="btn-next-3">Continue 💕</button>
+        </section>
+
+        <!-- Section 4: Memory Match -->
+        <section id="s4-memory" class="hidden">
+            <h2>Beautiful Memories 🧸</h2>
+            <div id="memory-board" class="memory-grid"></div>
+            <button class="primary-btn hidden" id="btn-next-4">Continue 🌹</button>
+        </section>
+
+        <!-- Section 5: Birthday Quiz -->
+        <section id="s5-quiz" class="hidden">
+            <h2>Kutty Quiz 👑</h2>
+            <div id="quiz-container">
+                <p id="question-text"></p>
+                <div id="options-container"></div>
+            </div>
+            <button class="primary-btn hidden" id="btn-next-5">Continue ✨</button>
+        </section>
+
+        <!-- Section 6: Scratch Card -->
+        <section id="s6-scratch" class="hidden">
+            <h2>Scratch to Reveal 🎀</h2>
+            <div class="scratch-container">
+                <div class="scratch-content">Your Surprise Gift:<br>Unlimited Smiles + Unlimited Happiness + One Huge Birthday Hug 🤗</div>
+                <canvas id="scratch-canvas"></canvas>
+            </div>
+            <button class="primary-btn hidden" id="btn-next-6">Continue 💝</button>
+        </section>
+
+        <!-- Section 7: Love Meter -->
+        <section id="s7-meter" class="hidden">
+            <h2>Love Calculator 💘</h2>
+            <button id="btn-calculate" class="primary-btn">Calculate the Love</button>
+            <div id="meter-results" class="hidden">
+                <div class="meter-bar">Happiness: <div class="fill happiness"></div> 100%</div>
+                <div class="meter-bar">Cuteness: <div class="fill cuteness"></div> Infinity</div>
+                <div class="meter-bar">Smile: <div class="fill smile"></div> Unlimited</div>
+                <div class="meter-bar">Magic: <div class="fill magic"></div> 1000%</div>
+            </div>
+            <button class="primary-btn hidden" id="btn-next-7">Continue 🌠</button>
+        </section>
+
+        <!-- Section 8: Timeline -->
+        <section id="s8-timeline" class="hidden">
+            <h2>The Story So Far 📖</h2>
+            <div class="timeline">
+                <div class="time-item">You were born.</div>
+                <div class="time-item">The world became brighter.</div>
+                <div class="time-item">Someone smiled today because of you.</div>
+                <div class="time-item">Today is your special day, Kutty.</div>
+                <div class="time-item">May all your dreams come true.</div>
+            </div>
+            <button class="primary-btn hidden" id="btn-next-8">Continue 🎈</button>
+        </section>
+
+        <!-- Section 9: Balloon Celebration -->
+        <section id="s9-balloons" class="hidden">
+            <h2>Pop a Balloon 🎈</h2>
+            <div id="balloon-container"></div>
+            <p id="balloon-message"></p>
+            <button class="primary-btn hidden" id="btn-next-9">Continue 📸</button>
+        </section>
+
+        <!-- Section 10: Polaroid Gallery -->
+        <section id="s10-gallery" class="hidden">
+            <h2>Picture Perfect 🖼️</h2>
+            <input type="file" id="image-upload" accept="image/*" multiple style="display:none">
+            <button class="secondary-btn" onclick="document.getElementById('image-upload').click()">Add Photos</button>
+            <div id="polaroid-container">
+                <!-- Placeholders -->
+                <div class="polaroid"><div class="img-ph">💖</div><p>My favorite smile.</p></div>
+                <div class="polaroid"><div class="img-ph">✨</div><p>Pure magic.</p></div>
+            </div>
+            <button class="primary-btn" id="btn-next-10">Continue 🎂</button>
+        </section>
+
+        <!-- Section 11: Cake Cutting -->
+        <section id="s11-cake" class="hidden">
+            <h2>Time for Cake! 🎂</h2>
+            <div class="cake-visual" id="cake-visual">
+                <div class="candle" id="candle-1">🕯️</div>
+                <div class="candle" id="candle-2">🕯️</div>
+                <div class="candle" id="candle-3">🕯️</div>
+                <div class="cake-base">🍰</div>
+            </div>
+            <div class="cake-controls">
+                <button id="btn-light" class="primary-btn">Light Candles 🔥</button>
+                <button id="btn-blow" class="primary-btn hidden">Blow Candles 💨</button>
+                <button id="btn-cut" class="primary-btn hidden">Cut the Cake 🔪</button>
+            </div>
+            <p id="cake-wish" class="hidden">Make a Wish, Kutty! ✨</p>
+            <button class="primary-btn hidden" id="btn-next-11">The Finale 🎇</button>
+        </section>
+
+        <!-- Section 12: Final Surprise -->
+        <section id="s12-finale" class="hidden cinematic">
+            <div class="finale-content">
+                <h1 class="finale-title">Happy Birthday, Ratanisuddi Vasista!</h1>
+                <div class="finale-message">
+                    <p>You deserve all the happiness, all the smiles, and all the beautiful moments in this world.</p>
+                    <p>Thank you for being amazing.</p>
+                    <p>May this year bring you endless joy, success, and unforgettable memories.</p>
+                    <p class="highlight">Keep smiling, Kutty — because your smile makes the world brighter.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/effects.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

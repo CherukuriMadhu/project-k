@@ -1,0 +1,241 @@
+:root {
+    --primary-color: #ffb6c1; /* Light Pink */
+    --secondary-color: #e6e6fa; /* Lavender */
+    --accent-color: #d8bfd8; /* Thistle */
+    --text-color: #333;
+    --bg-color: #fff0f5; /* Lavender Blush */
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.37);
+    --gold: #ffd700;
+}
+
+body.dark-mode {
+    --text-color: #fff;
+    --bg-color: #2c1a30;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+h1, h2, h3, .typewriter, .dancing-font {
+    font-family: 'Dancing Script', cursive;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+    text-align: center;
+}
+
+section.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+section.hidden {
+    display: none;
+}
+
+.floating-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 10px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.2s;
+}
+
+.floating-btn:hover {
+    transform: scale(1.05);
+}
+
+.primary-btn, .secondary-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 182, 193, 0.8);
+}
+
+.primary-btn.glow {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px var(--primary-color); }
+    to { box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--accent-color); }
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+/* Glassmorphism containers */
+.glass-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--glass-shadow);
+    max-width: 600px;
+    width: 90%;
+}
+
+/* Sections specific styling */
+/* S1 */
+.cake-illustration { font-size: 5rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* S2 Gift Box */
+.gift-box { font-size: 6rem; cursor: pointer; transition: transform 0.3s; display: inline-block; }
+.gift-box:hover { animation: wiggle 0.5s infinite; }
+@keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
+#gift-message { font-size: 1.5rem; margin-top: 20px; max-width: 80%; }
+
+/* S3 Catch Hearts */
+#catch-game-area { width: 300px; height: 400px; border: 2px dashed var(--primary-color); position: relative; overflow: hidden; border-radius: 10px; margin: 20px auto; background: var(--glass-bg); }
+#basket { font-size: 3rem; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); cursor: grab; user-select: none; }
+.falling-heart { position: absolute; font-size: 2rem; top: -30px; user-select: none; }
+.game-info { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+
+/* S4 Memory */
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 400px; margin: 0 auto; }
+.memory-card { width: 70px; height: 70px; background: var(--primary-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: transform 0.3s; transform-style: preserve-3d; }
+.memory-card.flipped { transform: rotateY(180deg); background: #fff; border: 2px solid var(--primary-color); }
+.memory-card .icon { display: none; transform: rotateY(180deg); }
+.memory-card.flipped .icon { display: block; }
+
+/* S5 Quiz */
+#quiz-container { background: var(--glass-bg); padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; }
+.quiz-option { display: block; width: 100%; margin: 10px 0; padding: 10px; border-radius: 10px; border: 1px solid var(--primary-color); background: #fff; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333; }
+.quiz-option:hover { background: var(--secondary-color); }
+
+/* S6 Scratch */
+.scratch-container { position: relative; width: 300px; height: 200px; margin: 0 auto; }
+.scratch-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 15px; border: 2px solid var(--primary-color); padding: 20px; text-align: center; font-size: 1.2rem; font-weight: bold; color: var(--primary-color); }
+#scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 15px; cursor: crosshair; }
+
+/* S7 Meter */
+#meter-results { width: 90%; max-width: 400px; margin-top: 20px; text-align: left; }
+.meter-bar { margin: 15px 0; font-weight: bold; position: relative; background: #ddd; border-radius: 10px; padding: 5px 10px; overflow: hidden; z-index: 1; }
+.meter-bar .fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--primary-color); z-index: -1; width: 0; transition: width 2s ease-out; }
+
+/* S8 Timeline */
+.timeline { width: 90%; max-width: 500px; margin: 20px auto; border-left: 3px solid var(--primary-color); padding-left: 20px; text-align: left; }
+.time-item { margin-bottom: 20px; padding: 15px; background: var(--glass-bg); border-radius: 10px; opacity: 0; transform: translateX(-20px); transition: all 0.5s; font-size: 1.2rem; }
+.time-item.visible { opacity: 1; transform: translateX(0); }
+
+/* S9 Balloons */
+#balloon-container { position: relative; width: 100%; height: 300px; margin-bottom: 20px; display: flex; justify-content: center; align-items: flex-end; gap: 10px; }
+.balloon { font-size: 4rem; cursor: pointer; animation: floatB 3s infinite ease-in-out alternate; user-select: none; }
+@keyframes floatB { 0% { transform: translateY(0); } 100% { transform: translateY(-30px); } }
+#balloon-message { font-size: 1.5rem; font-family: 'Dancing Script', cursive; height: 30px; color: var(--primary-color); }
+
+/* S10 Gallery */
+#polaroid-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0; }
+.polaroid { background: #fff; padding: 10px 10px 30px 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: rotate(-3deg); transition: transform 0.3s; width: 150px; cursor: pointer; }
+.polaroid:nth-child(even) { transform: rotate(4deg); }
+.polaroid:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
+.img-ph { height: 120px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 10px; }
+.polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: #333; }
+
+/* S11 Cake */
+.cake-visual { font-size: 5rem; margin-bottom: 20px; position: relative; display: inline-block; }
+.candle { position: absolute; font-size: 2rem; top: -20px; opacity: 0; transition: opacity 0.3s; }
+#candle-1 { left: 10%; }
+#candle-2 { left: 40%; }
+#candle-3 { left: 70%; }
+.candle.lit { opacity: 1; text-shadow: 0 0 10px orange; }
+.candle.blown { opacity: 0.5; filter: grayscale(100%); }
+#cake-wish { font-size: 2rem; font-family: 'Dancing Script', cursive; color: var(--primary-color); margin: 15px 0; }
+
+/* S12 Finale */
+.cinematic { background: #000; color: #fff; }
+.finale-content { max-width: 800px; z-index: 2; }
+.finale-title { font-size: 4.5rem; color: var(--gold); margin-bottom: 30px; opacity: 0; animation: fadeIn 2s forwards 1s; }
+.finale-message p { font-size: 1.5rem; margin-bottom: 20px; opacity: 0; animation: fadeIn 2s forwards; }
+.finale-message p:nth-child(1) { animation-delay: 3s; }
+.finale-message p:nth-child(2) { animation-delay: 6s; }
+.finale-message p:nth-child(3) { animation-delay: 9s; }
+.finale-message p.highlight { font-size: 2rem; color: var(--primary-color); font-family: 'Dancing Script', cursive; margin-top: 40px; animation-delay: 12s; }
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+@media (max-width: 600px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    .memory-grid { grid-template-columns: repeat(4, 60px); }
+    .memory-card { width: 60px; height: 60px; font-size: 1.5rem; }
+}
