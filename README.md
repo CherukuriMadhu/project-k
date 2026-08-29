@@ -1,1 +1,1 @@
-# It is a Website asked by the Client to showcase their Greetings.
+# This is a Frontend based Website asked by the Client to showcase their Greetings.
